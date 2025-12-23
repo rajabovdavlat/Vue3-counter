@@ -17,10 +17,21 @@ export default {
   methods: {
     inc() {
       this.count++;
+      this.save();
     },
     reset() {
       this.count = 0;
+      this.save();
     },
+    save() {
+      localStorage.setItem("counterValue", this.count);
+    },
+  },
+  mounted() {
+    const saved = localStorage.getItem("counterValue");
+    if (saved !== null) {
+      this.count = Number(saved);
+    }
   },
 };
 </script>
